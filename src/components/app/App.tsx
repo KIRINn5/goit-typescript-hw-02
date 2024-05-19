@@ -6,7 +6,7 @@ import Loader from "../loader/Loader";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import LoadMoreBtn from "../loadMoreBtn/LoadMoreBtn";
 import ImageModal from "../imageModal/ImageModal";
-import { Image, UnsplashResponse } from "./App.types";
+import { Image, UnsplashResponse } from "./App.types"; // Увага до шляху імпорту
 
 const App: FC = () => {
   const [images, setImages] = useState<Image[]>([]);
@@ -42,7 +42,7 @@ const App: FC = () => {
         );
 
       const normalizeData: Image[] = response.data.results.map(
-        ({ alt_description, id, urls }) => ({
+        ({ alt_description, id, urls }: UnsplashImage) => ({
           alt: alt_description || "Image description",
           id,
           small: urls.small,
