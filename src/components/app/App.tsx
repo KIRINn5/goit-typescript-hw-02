@@ -6,7 +6,7 @@ import Loader from "../loader/Loader";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import LoadMoreBtn from "../loadMoreBtn/LoadMoreBtn";
 import ImageModal from "../imageModal/ImageModal";
-import { Image, UnsplashResponse } from "./App.types"; // Увага до шляху імпорту
+import { Image, UnsplashResponse, UnsplashImage } from "./App.type";
 
 const App: FC = () => {
   const [images, setImages] = useState<Image[]>([]);

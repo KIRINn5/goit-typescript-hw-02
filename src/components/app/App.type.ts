@@ -1,6 +1,6 @@
 export interface UnsplashImage {
+  alt_description: string | null;
   id: string;
-  alt_description: string;
   urls: {
     small: string;
     regular: string;
