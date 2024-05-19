@@ -6,7 +6,7 @@ import Loader from "../loader/Loader";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import LoadMoreBtn from "../loadMoreBtn/LoadMoreBtn";
 import ImageModal from "../imageModal/ImageModal";
-import { Image, UnsplashImage } from "./App.type";
+import { Image, UnsplashResponse } from "./App.types";
 
 const App: FC = () => {
   const [images, setImages] = useState<Image[]>([]);
@@ -22,25 +22,28 @@ const App: FC = () => {
     try {
       setLoading(true);
       const apiKey: string = "wmfnsVc_DdNJUYvLvziU9AjLz2nPehfwjBFjdxGMITc";
-      const params: UnsplashImage = {
+      const params = {
         client_id: apiKey,
         query: query,
         orientation: "landscape",
         page: pageNum,
         per_page: 12,
       };
-      const response: AxiosResponse<any> = await axios.get<
-        UnsplashImage,
-        AxiosResponse<any>
-      >(`https://api.unsplash.com/search/photos/`, {
-        params: params,
-        headers: {
-          Authorization: `Client-ID ${apiKey}`,
-        },
-      });
+
+      const response: AxiosResponse<UnsplashResponse> =
+        await axios.get<UnsplashResponse>(
+          `https://api.unsplash.com/search/photos/`,
+          {
+            params: params,
+            headers: {
+              Authorization: `Client-ID ${apiKey}`,
+            },
+          }
+        );
+
       const normalizeData: Image[] = response.data.results.map(
-        ({ alt_description, id, urls }: any) => ({
-          alt: alt_description,
+        ({ alt_description, id, urls }) => ({
+          alt: alt_description || "Image description",
           id,
           small: urls.small,
           regular: urls.regular,

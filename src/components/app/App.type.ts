@@ -1,14 +1,21 @@
-export interface Image {
-  alt: string;
+export interface UnsplashImage {
   id: string;
-  small: string;
-  regular: string;
+  alt_description: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
 }
 
-export interface UnsplashImage {
-  client_id: string;
-  query: string;
-  orientation: string;
-  page: number;
-  per_page: number;
+export interface UnsplashResponse {
+  results: UnsplashImage[];
+  total: number;
+  total_pages: number;
+}
+
+export interface Image {
+  id: string;
+  alt: string;
+  small: string;
+  regular: string;
 }
